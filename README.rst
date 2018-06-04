@@ -13,7 +13,7 @@ A quick 'n' dirty django app for switching between different users while testing
 Requirements
 ------------
 
->= Django 1.2
+>= Django 2.0
 
 ------------
 Installation
@@ -21,7 +21,7 @@ Installation
 
 To install the latest version:: 
 
-    pip install git+git://github.com/ikraftsoft/django-userswitch#egg=django-userswitch
+    pip install git+git://github.com//harpb/django-userswitch#egg=django-userswitch
 
 It can also be installed from PyPI with ``pip`` or ``easy_install``::
 
@@ -51,6 +51,7 @@ Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
     USERSWITCH_OPTIONS = {
         'css_class': '',       # CSS class to be added to the switcher widget. Default='userswitch'.
         'css_inline': '',      # Inline css for the switcher widget, if any
+        'select_css_class': '',# CSS class to be added to the select control. Default='form-control'.
         'content_types': (),   # a tuple of content-type for which to render switcher widget. Default = ('text/html', 'application/xhtml+xml')
         'auth_backend': '',    # Custom auth backend if any. Default = 'django.contrib.auth.backends.ModelBackend'
         'replace_text': '',    # Text to replace with the widget, default add to end "body" tag.
