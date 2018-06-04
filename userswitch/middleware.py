@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.core.exceptions import MiddlewareNotUsed
 from django import VERSION
+from django.utils.deprecation import MiddlewareMixin
 
 if VERSION[0] < 1 or (VERSION[0] == 1 and VERSION[1] < 5):
     from django.contrib.auth.models import User
@@ -11,7 +12,7 @@ else:
     User = get_user_model()
 
 
-class UserSwitchMiddleware(object):
+class UserSwitchMiddleware(MiddlewareMixin):
     def __init__(self, get_response=None):
 
         super(UserSwitchMiddleware, self).__init__(get_response=get_response)
@@ -70,7 +71,7 @@ class UserSwitchMiddleware(object):
             auth.login(request, user)
 
             # Redirect to the refering URL, if there is one
-            if request.META.has_key('HTTP_REFERER'):
+            if 'HTTP_REFERER' in request.META:
                 return HttpResponseRedirect(request.META['HTTP_REFERER'])
             else:
                 return HttpResponseRedirect('/')
